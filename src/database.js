@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import { Card, CardContent } from '@mui/material';
 
 const Search = ({ license }) => {
     const [data, setData] = useState(null);
     const fetchData = async (jsonData) => {
       console.log(jsonData)
       try {
-        const response = await fetch('https://worker-little-voice-65ef.ykchen03.workers.dev/', {
+        const response = await fetch('https://express-topaz.vercel.app/data', {//'https://express-topaz.vercel.app/data', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -33,9 +34,13 @@ const Search = ({ license }) => {
     }, [license]);
   
     return (
-      <div>
+      <div style={{ display: 'flex', marginTop: '20px' }} >
         {data ? (
-        <pre>{JSON.stringify(data,null,2)}</pre>
+        <Card>
+          <CardContent>
+              {JSON.stringify(data.data)}
+          </CardContent>
+        </Card>
       ) : (
         <p>Loading...</p>
       )}
