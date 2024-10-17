@@ -7,6 +7,7 @@ import Search from './database';
 import './App.css';
 
 function App() {
+  const [input, setInput] = useState('');
   const [license, setLicense] = useState('');
   const [searchTriggered, setSearchTriggered] = useState(false);
 
@@ -15,6 +16,7 @@ function App() {
   };
 
   const handleSearchClick = () => {
+    setInput(license);
     setSearchTriggered(true);
   };
 
@@ -63,7 +65,7 @@ function App() {
       <Button variant="contained" sx={{margin: 2}} onClick={handleSearchClick}>搜尋</Button>
     </Box>
     <Box component="section" display="flex" justifyContent="center" alignItems="center" sx={{ fontSize: 30, marginTop: 3}}>
-      {searchTriggered && <Search license={license} />}
+      {searchTriggered && <Search license={input} />}
     </Box>
     <Snackbar
         open={open}
